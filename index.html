@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assistant — домашня сторінка / Home page</title>
+<meta name="description" content="Assistant — особистий Android-застосунок для обліку речей, нотаток і допомоги. Assistant — a personal Android app for tracking items, notes and assistance.">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --text: #1d2229;
+    --muted: #5a6572;
+    --accent: #1a6fd1;
+    --accent-text: #ffffff;
+    --border: #dde1e7;
+    --note-bg: #eaf2fc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151a;
+      --surface: #1b2027;
+      --text: #e8ebef;
+      --muted: #a2acb8;
+      --accent: #6fb0ff;
+      --accent-text: #0d1117;
+      --border: #2b323c;
+      --note-bg: #1a2736;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+  }
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+  .lang {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .lang button {
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    border: 0;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+  .lang button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  section.lang-block { display: none; }
+  body[data-lang="uk"] section[lang="uk"],
+  body[data-lang="en"] section[lang="en"] { display: block; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 20px 4px;
+  }
+  h1 {
+    font-size: 1.6rem;
+    line-height: 1.25;
+    margin: 0 0 8px;
+  }
+  h2 {
+    font-size: 1.1rem;
+    margin: 24px 0 6px;
+  }
+  p, ul { margin: 0 0 14px; }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: 4px; }
+  .lead { color: var(--muted); font-size: 1.05rem; }
+  code {
+    background: var(--note-bg);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 0.92em;
+    word-break: break-all;
+  }
+  .note {
+    background: var(--note-bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin: 0 0 16px;
+  }
+  a { color: var(--accent); }
+  footer {
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .card { padding: 16px 14px 2px; }
+    h1 { font-size: 1.35rem; }
+  }
+</style>
+</head>
+<body data-lang="uk">
+<div class="wrap">
+  <header>
+    <div class="brand">Assistant</div>
+    <div class="lang" role="group" aria-label="Мова / Language">
+      <button type="button" id="btn-uk" aria-pressed="true">Українська</button>
+      <button type="button" id="btn-en" aria-pressed="false">English</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Українська -->
+    <section class="lang-block" lang="uk">
+      <div class="card">
+        <h1>Assistant — особистий Android-застосунок</h1>
+        <p class="lead">Допомагає вести облік речей, зберігати нотатки та користуватися помічником у повсякденних справах.</p>
+
+        <h2>Що це за застосунок</h2>
+        <p>«Assistant» — це особистий застосунок для Android. Він зберігає ваші дані на вашому телефоні та допомагає впорядковувати побут: облік речей, нотатки й інші щоденні завдання.</p>
+
+        <h2>Що він робить</h2>
+        <ul>
+          <li>веде облік речей і нотаток;</li>
+          <li>пропонує помічника для щоденних справ;</li>
+          <li>за вашим бажанням створює резервну копію даних у вашому Google Drive.</li>
+        </ul>
+
+        <h2>Навіщо потрібен доступ до Google Drive</h2>
+        <p>Доступ потрібен лише для однієї мети: щоб зберегти резервну копію даних застосунку у <strong>вашому власному</strong> Google Drive і відновити її, коли ви цього захочете (наприклад, на новому телефоні).</p>
+
+        <div class="note">
+          <strong>Обмежений доступ.</strong> Застосунок використовує лише область доступу
+          <code>https://www.googleapis.com/auth/drive.file</code>.
+          Це означає, що він бачить виключно ті файли, які створив сам. До решти ваших файлів у Google Drive він доступу не має.
+        </div>
+
+        <h2>Конфіденційність</h2>
+        <p>Докладніше про те, які дані обробляються і як, читайте в <a href="privacy.html">політиці конфіденційності</a>.</p>
+
+        <h2>Контакти</h2>
+        <p>З будь-яких питань пишіть на <a href="mailto:977777a@gmail.com">977777a@gmail.com</a>.</p>
+      </div>
+    </section>
+
+    <!-- English -->
+    <section class="lang-block" lang="en">
+      <div class="card">
+        <h1>Assistant — a personal Android app</h1>
+        <p class="lead">Helps you keep track of your belongings, store notes and get help with everyday tasks.</p>
+
+        <h2>What the app is</h2>
+        <p>“Assistant” is a personal Android app. It keeps your data on your phone and helps you organise daily life: tracking items, notes and other everyday tasks.</p>
+
+        <h2>What it does</h2>
+        <ul>
+          <li>keeps track of your items and notes;</li>
+          <li>provides an assistant for everyday tasks;</li>
+          <li>optionally backs up your data to your own Google Drive.</li>
+        </ul>
+
+        <h2>Why it needs access to Google Drive</h2>
+        <p>Access is needed for a single purpose: to save a backup of the app’s data in <strong>your own</strong> Google Drive and to restore it when you choose (for example, on a new phone).</p>
+
+        <div class="note">
+          <strong>Limited access.</strong> The app uses only the
+          <code>https://www.googleapis.com/auth/drive.file</code> scope.
+          This means it can see only the files that it created itself. It has no access to any of your other files in Google Drive.
+        </div>
+
+        <h2>Privacy</h2>
+        <p>For details on what data is processed and how, please read the <a href="privacy.html">Privacy Policy</a>.</p>
+
+        <h2>Contact</h2>
+        <p>For any questions, write to <a href="mailto:977777a@gmail.com">977777a@gmail.com</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span lang="uk">© Assistant</span>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var body = document.body;
+    var btnUk = document.getElementById('btn-uk');
+    var btnEn = document.getElementById('btn-en');
+
+    function setLang(lang) {
+      body.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+      btnUk.setAttribute('aria-pressed', lang === 'uk' ? 'true' : 'false');
+      btnEn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+      document.title = lang === 'uk'
+        ? 'Assistant — домашня сторінка'
+        : 'Assistant — Home page';
+    }
+
+    btnUk.addEventListener('click', function () { setLang('uk'); });
+    btnEn.addEventListener('click', function () { setLang('en'); });
+  })();
+</script>
+</body>
+</html>
